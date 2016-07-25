@@ -1,0 +1,1 @@
+json.array! @admin_apps, partial: 'admin_apps/admin_app', as: :admin_app

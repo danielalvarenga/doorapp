@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160724220751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["app_id"], name: "index_tokens_on_app_id", using: :btree
+    t.index ["secret_key"], name: "index_tokens_on_secret_key", using: :btree
     t.index ["user_id"], name: "index_tokens_on_user_id", using: :btree
   end
 
