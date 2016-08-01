@@ -1,0 +1,32 @@
+<%= form_for user, url: user.persisted? ? admin_user_path(user) : admin_users_path(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, t('helpers.error')) %>:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_area :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.text_area :password %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
