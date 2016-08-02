@@ -1,4 +1,4 @@
-class Admin::AppsController < ApplicationController
+class Admin::AppsController < Admin::AdminBaseController
   before_action :set_app, only: [:edit, :update, :destroy]
 
   # GET /admin/apps
@@ -23,7 +23,7 @@ class Admin::AppsController < ApplicationController
 
     respond_to do |format|
       if @app.save
-        format.html { redirect_to admin_apps_url, notice: 'App was successfully created.' }
+        format.html { redirect_to edit_admin_apps_url(@app), notice: 'App was successfully created.' }
         format.json { render :show, status: :created, location: @app }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class Admin::AppsController < ApplicationController
   def update
     respond_to do |format|
       if @app.update(app_params)
-        format.html { redirect_to admin_apps_url, notice: 'App was successfully updated.' }
+        format.html { redirect_to edit_admin_app_url(@app), notice: 'App was successfully updated.' }
         format.json { render :show, status: :ok, location: @app }
       else
         format.html { render :edit }

@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminBaseController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /admin/users
@@ -23,7 +23,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to admin_users_url, notice: 'User was successfully created.' }
+        format.html { redirect_to edit_admin_user_url(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to admin_users_url, notice: 'User was successfully updated.' }
+        format.html { redirect_to edit_admin_user_url(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
