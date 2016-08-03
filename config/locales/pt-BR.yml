@@ -172,6 +172,7 @@ pt-BR:
     back: 'Voltar'
     confirm: 'Você tem certeza?'
     error: Erro
+    not_token: Não possui token
   number:
     currency:
       format:

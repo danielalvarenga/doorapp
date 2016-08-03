@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724220751) do
+ActiveRecord::Schema.define(version: 20160803115412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,13 +24,12 @@ ActiveRecord::Schema.define(version: 20160724220751) do
 
   create_table "tokens", force: :cascade do |t|
     t.string   "secret_key"
-    t.boolean  "temporary"
+    t.boolean  "temporary",  default: true
     t.integer  "app_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["app_id"], name: "index_tokens_on_app_id", using: :btree
-    t.index ["secret_key"], name: "index_tokens_on_secret_key", using: :btree
     t.index ["user_id"], name: "index_tokens_on_user_id", using: :btree
   end
 

@@ -12,5 +12,4 @@ class Token < ApplicationRecord
       break secret_key unless Token.exists?(secret_key: secret_key)
     end
   end
-  
 end

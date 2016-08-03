@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'token/create'
-  end
-
-  namespace :admin do
-    get 'token/update'
-  end
-
-  namespace :admin do
-    get 'token/delete'
-  end
-
+  resources :tokens
   namespace :api do
     namespace :v1 do
       get 'logged_user/show'

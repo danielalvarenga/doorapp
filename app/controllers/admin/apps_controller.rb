@@ -23,7 +23,7 @@ class Admin::AppsController < Admin::AdminBaseController
 
     respond_to do |format|
       if @app.save
-        format.html { redirect_to edit_admin_apps_url(@app), notice: 'App was successfully created.' }
+        format.html { redirect_to edit_admin_app_url(@app), notice: 'App was successfully created.' }
         format.json { render :show, status: :created, location: @app }
       else
         format.html { render :new }
