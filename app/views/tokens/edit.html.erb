@@ -1,6 +1,10 @@
-<h1>Editing Token</h1>
-
-<%= render 'form', token: @token %>
-
-<%= link_to 'Show', @token %> |
-<%= link_to 'Back', tokens_path %>
+<div>
+	<p><strong>API Token:</strong></p>
+	<p><%= token.secret_key if token %></p>
+</div>
+<div>
+	<p>
+		<%= link_to t('helpers.submit.update', Token), token_path(token), remote: true, method: :put %> |
+		<%= link_to t('helpers.destroy'), token, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<p>
+</div>

@@ -1,20 +1,29 @@
-<% if app.token %>
+<% if token.persisted? %>
 	<div>
 		<p><strong>API Token:</strong></p>
-		<p><%= app.token.secret_key if app.token %></p>
+		<p id="show_token"><%= token.secret_key if token %></p>
 	</div>
 	<div>
 		<p>
-			<%= link_to t('helpers.submit.update', Token), token_path(app.token) %> |
-			<%= link_to t('helpers.destroy'), app.token, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to t('helpers.submit.update', Token), token_path(token), remote: true, method: :put %> |
+			<%= link_to t('helpers.destroy'), token, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<p>
 	</div>
 <% else %>
 	<div>
 		<p><strong>API Token:</strong></p>
-		<p><%= t('helpers.not_token') %></p>
+		<p id="show_token"><%= t('helpers.not_token') %></p>
 	</div>
 	<div>
-		<p><%= link_to t('helpers.submit.create', model: 'Token'), token_path(app) %><p>
+		<p><%= link_to t('helpers.submit.create', model: 'Token'), tokens_path(token: token.attributes),
+								remote: true,
+								method: :post,
+								id: 'create_token' %><p>
 	</div>
 <% end %>
+
+<script>
+  $('#create_token').bind('ajax:complete', function(){
+	  $('#show_token').replaceWith(result.responseText);
+	});
+</script>

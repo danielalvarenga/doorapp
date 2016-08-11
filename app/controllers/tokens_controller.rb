@@ -24,15 +24,14 @@ class TokensController < ApplicationController
   # POST /tokens
   # POST /tokens.json
   def create
-    @token = Token.new(token_params)
-
+    @token = service.create_token(token_params)
     respond_to do |format|
-      if @token.save
+      if @token
         format.html { redirect_to @token, notice: 'Token was successfully created.' }
         format.json { render :show, status: :created, location: @token }
       else
         format.html { render :new }
-        format.json { render json: @token.errors, status: :unprocessable_entity }
+        format.json { render json: {}, status: :unprocessable_entity }
       end
     end
   end
@@ -70,5 +69,9 @@ class TokensController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def token_params
       params.require(:token).permit(:secret_key, :temporary, :app_id, :user_id)
+    end
+
+    def service
+      @service ||= TokenService.new
     end
 end
