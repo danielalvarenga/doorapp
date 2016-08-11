@@ -1,4 +1,4 @@
-<%= form_for token, url: token.persisted? ? token_path(token) : tokens_path do |f| %>
+<%= form_for token, url: token.persisted? ? token_path(token) : tokens_path, remote: true do |f| %>
 
     <div>
       <p><strong>API Token:</strong></p>
@@ -15,7 +15,7 @@
 <% end %>
 
 <script>
-  $('form').bind('ajax:complete', function(){
+  $('form#new_token').bind('ajax:complete', function(){
     $('#show_token').replaceWith(result.responseText);
   });
 </script>

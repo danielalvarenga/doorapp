@@ -24,7 +24,7 @@ class TokensController < ApplicationController
   # POST /tokens
   # POST /tokens.json
   def create
-    @token = service.create_token(token_params)
+    @token = service.create_token_to_app(token_params)
     respond_to do |format|
       if @token
         format.html { redirect_to @token, notice: 'Token was successfully created.' }

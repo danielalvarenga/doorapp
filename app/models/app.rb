@@ -1,6 +1,9 @@
 class App < ApplicationRecord
-	has_one :token
-	has_many :tmp_tokens
+	has_many :tokens
 
 	validates_presence_of :name
+
+	def permanent_token
+		return self.tokens.permanent.first unless self.tokens.permanent.blank?
+	end
 end
