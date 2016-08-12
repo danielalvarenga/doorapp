@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :tokens
   namespace :api do
     namespace :v1 do
       get 'logged_user/show'
@@ -12,5 +11,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :apps, except: [:show]
     resources :users, except: [:show]
+    resources :tokens, except: [:new, :show, :edit]
   end
 end

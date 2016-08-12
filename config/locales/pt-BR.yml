@@ -17,6 +17,12 @@ pt-BR:
         username: 'Nome de usuário'
         password: 'Senha'
         password_confirmation: 'Confirmação de senha'
+      token:
+        secret_key: 'Chave'
+        temporary: 'Temporário'
+        tokenable_type: 'Associação'
+        tokenable_id: 'ID da Associação'
+        tokenable: 'Descrição'
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

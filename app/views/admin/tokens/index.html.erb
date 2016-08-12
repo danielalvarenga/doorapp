@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tokens</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= Token.human_attribute_name(:secret_key) %></th>
+      <th><%= Token.human_attribute_name(:temporary) %></th>
+      <th><%= Token.human_attribute_name(:tokenable_type) %></th>
+      <th><%= Token.human_attribute_name(:tokenable) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tokens.each do |token| %>
+      <tr>
+        <td><%= token.secret_key %></td>
+        <td><%= token.temporary %></td>
+        <td><%= token.tokenable_type %></td>
+        <td><%= token.tokenable.name %></td>
+        <td><%= link_to t('helpers.destroy'), admin_token_path(token), method: :delete, data: { confirm: t('helpers.confirm') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -2,6 +2,6 @@
 
 <%= render 'form', app: @app %>
 
-<%= render 'token', app: @app %>
+<%= render 'admin/tokens/form', token: @app.token %>
 
 <%= link_to t('helpers.back'), admin_apps_path %>
