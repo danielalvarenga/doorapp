@@ -1,0 +1,26 @@
+<%= form_for token, url: token.persisted? ? admin_token_path(token) : admin_tokens_path do |f| %>
+  <% if token.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(token.errors.count, "error") %> prohibited this token from being saved:</h2>
+
+      <ul>
+      <% token.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :secret_key %>
+    <%= token.secret_key %>
+  </div>
+
+  <%= f.hidden_field :temporary %>
+  <%= f.hidden_field :tokenable_id %>
+  <%= f.hidden_field :tokenable_type %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

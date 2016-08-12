@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803115412) do
+ActiveRecord::Schema.define(version: 20160812001650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +23,13 @@ ActiveRecord::Schema.define(version: 20160803115412) do
   end
 
   create_table "tokens", force: :cascade do |t|
-    t.string   "secret_key"
-    t.boolean  "temporary",  default: true
-    t.integer  "app_id"
-    t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["app_id"], name: "index_tokens_on_app_id", using: :btree
-    t.index ["user_id"], name: "index_tokens_on_user_id", using: :btree
+    t.string   "secret_key",                    null: false
+    t.boolean  "temporary",      default: true
+    t.string   "tokenable_type"
+    t.integer  "tokenable_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["tokenable_type", "tokenable_id"], name: "index_tokens_on_tokenable_type_and_tokenable_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,6 +40,4 @@ ActiveRecord::Schema.define(version: 20160803115412) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "tokens", "apps"
-  add_foreign_key "tokens", "users"
 end
